@@ -21,15 +21,15 @@ var botBattle = (function(botBattle) {
     typeOne = event.target.getAttribute('id');
     console.log("Type One: ", typeOne);
     subMain.off('click', modelSelectOne);
-    if(typeOne = 'Spinner') {
+    if(typeOne === 'Spinner') {
       subMain.html(`<h2>Pick a model of Spinner robot</h2>
       <div class='select col-lg-12' id='Whyachi'>Whyachi</div>
       <div class='select col-lg-12' id='Blendo'>Blendo</div>`);
-    } else if(typeOne = 'Hammer') {
+    } else if(typeOne === 'Hammer') {
         subMain.html(`<h2>Pick a model of Hammer robot</h2>
         <div class='select col-lg-12' id='Hammertime'>Hammertime</div>
         <div class='select col-lg-12' id='Grendel'>Grendel</div>`);
-    } else if(typeOne = 'Flipper') {
+    } else if(typeOne === 'Flipper') {
         subMain.html(`<h2>Pick a model of Flipper robot</h2>
         <div class='select col-lg-12' id='Toro'>Toro</div>
         <div class='select col-lg-12' id='Bronco'>Bronco</div>`);
@@ -53,16 +53,19 @@ var botBattle = (function(botBattle) {
 
   // Select second bot type
 
+
+
   //Start new game
   botBattle.newGame = function() {
-    mainDiv.html('<div class="col-md-2"></div><input type="text" class="col-md-3" id="firstBot" placeholder="Enter name for Robot #1"><div class="col-md-2"></div><input type="text" class="col-md-3" id="secondBot" placeholder="Enter name for Robot #2"><div class="col-md-2"></div>');
-    $('#firstBot').focus();
+    $('#start').hide();
+    mainDiv.html('<div class="col-md-2"></div><input type="text" class="col-md-3" id="firstBot" placeholder="Enter name for Robot #1" autofocus><div class="col-md-2"></div><input type="text" class="col-md-3" id="secondBot" placeholder="Enter name for Robot #2"><div class="col-md-2"></div>');
     $('#firstBot').keyup(typeSelectOne);
-    // .then(('#secondBot').focus());
-    // $('#secondBot').addEventListener('keyup', typeSelectTwo);
     $('battleCard').hide();
     $('finalCard').hide();
   };
+
+  // Event Listener for 'Start Game' button
+  $('#start').click(botBattle.newGame);
 
   return botBattle;
 })(botBattle || {});
